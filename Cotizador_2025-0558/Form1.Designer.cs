@@ -349,7 +349,7 @@
             MaximizeBox = false;
             Name = "frmInicio";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Cotizador Villa Coral - Luzmairy Espiritusanto R 2025-0558";
+            Text = "Cotizador Villa Coral - Luzmairy Espiritusanto R. 2025-0558";
             Load += frmInicio_Load;
             gbCotizador.ResumeLayout(false);
             gbCotizador.PerformLayout();
