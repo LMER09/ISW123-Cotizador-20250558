@@ -75,6 +75,7 @@
             label1 = new Label();
             btnCuentaTotal = new Button();
             lblValorPredeterminado = new Label();
+            btnViejo = new Button();
             gbCotizador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudPersonas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudTasa).BeginInit();
@@ -606,12 +607,23 @@
             lblValorPredeterminado.TabIndex = 36;
             lblValorPredeterminado.Text = "Valores predeterminados: 6 personas - Tarifa 85 USD";
             // 
+            // btnViejo
+            // 
+            btnViejo.Location = new Point(702, 709);
+            btnViejo.Name = "btnViejo";
+            btnViejo.Size = new Size(469, 36);
+            btnViejo.TabIndex = 37;
+            btnViejo.Text = "Sistema Viejo";
+            btnViejo.UseVisualStyleBackColor = true;
+            btnViejo.Click += btnViejo_Click;
+            // 
             // frmInicio
             // 
             AutoScaleDimensions = new SizeF(10F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             ClientSize = new Size(1206, 1132);
+            Controls.Add(btnViejo);
             Controls.Add(lblValorPredeterminado);
             Controls.Add(btnCuentaTotal);
             Controls.Add(label1);
@@ -699,5 +711,6 @@
         private Label label1;
         private Button btnCuentaTotal;
         private Label lblValorPredeterminado;
+        private Button btnViejo;
     }
 }
