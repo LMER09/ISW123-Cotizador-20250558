@@ -241,5 +241,79 @@ namespace Cotizador_2025_0558
 
         }
 
+        private void btnTraslado_Click(object sender, EventArgs e)
+        {
+            var traslado = new TrasladoAeropuerto
+            {
+                Pasajeros = (int)nudPersonas.Value,
+                Nocturno = chkNocturno.Checked
+            };
+
+            lstResultados.Items.Add($"Traslado Aeropuerto: US$ {traslado.Total:N2}");
+        }
+
+        private void bntExcursion_Click(object sender, EventArgs e)
+        {
+            var excursion = new Excursion
+            {
+                Personas = 6,
+                PrecioPorPersona = 85m
+            };
+
+            if (excursion.Personas >= 4)
+            {
+                lstResultados.Items.Add($"Excursión Isla Saona: US$ {excursion.Subtotal:N2}");
+                lstResultados.Items.Add($"Descuento 10%: -US$ {excursion.Descuento:N2}");
+            }
+
+            lstResultados.Items.Add($"Excursión Isla Saona: US$ {excursion.Total:N2}");
+
+        }
+
+        private void btnMiniBar_Click(object sender, EventArgs e)
+        {
+            var minibar = new ConsumoMinibar
+            {
+                Cantidad = (int)nudCantidad.Value,
+                PrecioUnitario = nudPrecioUnitario.Value
+            };
+
+            lstResultados.Items.Add($"MiniBar: US$ {minibar.Total:N2}");
+
+        }
+
+        private void btnCuentaTotal_Click(object sender, EventArgs e)
+        {
+            var reserva = new Reserva
+            {
+                Huesped = txtHuesped.Text.Trim(),
+                Noches = (int)nudNoches.Value,
+                TarifaPorNoche = nudTarifa.Value,
+                EsTemporadaAlta = chkTemporadaAlta.Checked
+            };
+            var traslado = new TrasladoAeropuerto
+            {
+                Pasajeros = (int)nudPersonas.Value,
+                Nocturno = chkNocturno.Checked
+            };
+            var excursion = new Excursion
+            {
+                Personas = 6, // valores predetermoindo
+                PrecioPorPersona = 85m
+            };
+            var minibar = new ConsumoMinibar
+            {
+                Cantidad = (int)nudCantidad.Value,
+                PrecioUnitario = nudPrecioUnitario.Value
+            };
+
+            decimal cuenta = reserva.Total + traslado.Total + excursion.Total + minibar.Total;
+            lstResultados.Items.Add($"Reserva: US$ {reserva.Total:N2}");
+            lstResultados.Items.Add($"Traslado al Aeropuerto: US$ {traslado.Total:N2}");
+            lstResultados.Items.Add($"Excursión Isla Saona: US$ {excursion.Total:N2}");
+            lstResultados.Items.Add($"Consumo en el MiniBar: US$ {minibar.Total:N2}");
+            lstResultados.Items.Add($"Cuenta Total: US$ {cuenta:N2}");
+
+        }
     }
 }

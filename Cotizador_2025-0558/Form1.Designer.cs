@@ -63,12 +63,26 @@
             lblSub = new Label();
             btnImperativo = new Button();
             lstResultados = new ListBox();
+            btnTraslado = new Button();
+            chkNocturno = new CheckBox();
+            bntExcursion = new Button();
+            lblTarifaExcursion = new Label();
+            btnMiniBar = new Button();
+            nudPrecioUnitario = new NumericUpDown();
+            lblMinibar = new Label();
+            label2 = new Label();
+            nudCantidad = new NumericUpDown();
+            label1 = new Label();
+            btnCuentaTotal = new Button();
+            lblValorPredeterminado = new Label();
             gbCotizador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudPersonas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudTasa).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudTarifa).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoches).BeginInit();
             gbTotales.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudPrecioUnitario).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudCantidad).BeginInit();
             SuspendLayout();
             // 
             // gbCotizador
@@ -210,6 +224,7 @@
             // 
             // nudTarifa
             // 
+            nudTarifa.DecimalPlaces = 2;
             nudTarifa.Location = new Point(26, 186);
             nudTarifa.Margin = new Padding(4, 3, 4, 3);
             nudTarifa.Maximum = new decimal(new int[] { 1569325056, 23283064, 0, 0 });
@@ -468,12 +483,147 @@
             lstResultados.Size = new Size(469, 602);
             lstResultados.TabIndex = 13;
             // 
+            // btnTraslado
+            // 
+            btnTraslado.Location = new Point(361, 748);
+            btnTraslado.Name = "btnTraslado";
+            btnTraslado.Size = new Size(254, 36);
+            btnTraslado.TabIndex = 23;
+            btnTraslado.Text = "Traslado Aeropuerto";
+            btnTraslado.UseVisualStyleBackColor = true;
+            btnTraslado.Click += btnTraslado_Click;
+            // 
+            // chkNocturno
+            // 
+            chkNocturno.AutoSize = true;
+            chkNocturno.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            chkNocturno.ForeColor = Color.MediumBlue;
+            chkNocturno.Location = new Point(366, 713);
+            chkNocturno.Margin = new Padding(4, 3, 4, 3);
+            chkNocturno.Name = "chkNocturno";
+            chkNocturno.Size = new Size(257, 29);
+            chkNocturno.TabIndex = 25;
+            chkNocturno.Text = "Traslado nocturno (+20%)";
+            chkNocturno.UseVisualStyleBackColor = true;
+            // 
+            // bntExcursion
+            // 
+            bntExcursion.Location = new Point(39, 813);
+            bntExcursion.Name = "bntExcursion";
+            bntExcursion.Size = new Size(269, 36);
+            bntExcursion.TabIndex = 26;
+            bntExcursion.Text = "Excursión Isla Saona";
+            bntExcursion.UseVisualStyleBackColor = true;
+            bntExcursion.Click += bntExcursion_Click;
+            // 
+            // lblTarifaExcursion
+            // 
+            lblTarifaExcursion.AutoSize = true;
+            lblTarifaExcursion.Location = new Point(39, 695);
+            lblTarifaExcursion.Margin = new Padding(4, 0, 4, 0);
+            lblTarifaExcursion.Name = "lblTarifaExcursion";
+            lblTarifaExcursion.Size = new Size(206, 23);
+            lblTarifaExcursion.TabIndex = 27;
+            lblTarifaExcursion.Text = "Tarifa de Excursión USD:";
+            // 
+            // btnMiniBar
+            // 
+            btnMiniBar.Location = new Point(39, 1074);
+            btnMiniBar.Name = "btnMiniBar";
+            btnMiniBar.Size = new Size(269, 36);
+            btnMiniBar.TabIndex = 29;
+            btnMiniBar.Text = "MiniBar";
+            btnMiniBar.UseVisualStyleBackColor = true;
+            btnMiniBar.Click += btnMiniBar_Click;
+            // 
+            // nudPrecioUnitario
+            // 
+            nudPrecioUnitario.DecimalPlaces = 2;
+            nudPrecioUnitario.Location = new Point(36, 1028);
+            nudPrecioUnitario.Margin = new Padding(4, 3, 4, 3);
+            nudPrecioUnitario.Maximum = new decimal(new int[] { 1569325056, 23283064, 0, 0 });
+            nudPrecioUnitario.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudPrecioUnitario.Name = "nudPrecioUnitario";
+            nudPrecioUnitario.Size = new Size(193, 30);
+            nudPrecioUnitario.TabIndex = 31;
+            nudPrecioUnitario.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // lblMinibar
+            // 
+            lblMinibar.AutoSize = true;
+            lblMinibar.Location = new Point(34, 883);
+            lblMinibar.Margin = new Padding(4, 0, 4, 0);
+            lblMinibar.Name = "lblMinibar";
+            lblMinibar.Size = new Size(217, 23);
+            lblMinibar.TabIndex = 30;
+            lblMinibar.Text = "Consumido en el MiniBar:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(31, 922);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(198, 23);
+            label2.TabIndex = 32;
+            label2.Text = "Cantidad de Productos:";
+            // 
+            // nudCantidad
+            // 
+            nudCantidad.Location = new Point(36, 948);
+            nudCantidad.Margin = new Padding(4, 3, 4, 3);
+            nudCantidad.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudCantidad.Name = "nudCantidad";
+            nudCantidad.Size = new Size(193, 30);
+            nudCantidad.TabIndex = 33;
+            nudCantidad.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(36, 993);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(179, 23);
+            label1.TabIndex = 34;
+            label1.Text = "Precio Unitario USD :";
+            // 
+            // btnCuentaTotal
+            // 
+            btnCuentaTotal.Location = new Point(702, 665);
+            btnCuentaTotal.Name = "btnCuentaTotal";
+            btnCuentaTotal.Size = new Size(469, 36);
+            btnCuentaTotal.TabIndex = 35;
+            btnCuentaTotal.Text = "Cuenta Total";
+            btnCuentaTotal.UseVisualStyleBackColor = true;
+            btnCuentaTotal.Click += btnCuentaTotal_Click;
+            // 
+            // lblValorPredeterminado
+            // 
+            lblValorPredeterminado.Location = new Point(39, 728);
+            lblValorPredeterminado.Name = "lblValorPredeterminado";
+            lblValorPredeterminado.Size = new Size(221, 82);
+            lblValorPredeterminado.TabIndex = 36;
+            lblValorPredeterminado.Text = "Valores predeterminados: 6 personas - Tarifa 85 USD";
+            // 
             // frmInicio
             // 
             AutoScaleDimensions = new SizeF(10F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
-            ClientSize = new Size(1211, 686);
+            ClientSize = new Size(1206, 1132);
+            Controls.Add(lblValorPredeterminado);
+            Controls.Add(btnCuentaTotal);
+            Controls.Add(label1);
+            Controls.Add(nudCantidad);
+            Controls.Add(label2);
+            Controls.Add(nudPrecioUnitario);
+            Controls.Add(lblMinibar);
+            Controls.Add(btnMiniBar);
+            Controls.Add(lblTarifaExcursion);
+            Controls.Add(bntExcursion);
+            Controls.Add(chkNocturno);
+            Controls.Add(btnTraslado);
             Controls.Add(lstResultados);
             Controls.Add(btnImperativo);
             Controls.Add(gbTotales);
@@ -494,7 +644,10 @@
             ((System.ComponentModel.ISupportInitialize)nudNoches).EndInit();
             gbTotales.ResumeLayout(false);
             gbTotales.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudPrecioUnitario).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudCantidad).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -534,5 +687,17 @@
         private Button btnDeposito;
         private Label lblTasa;
         private Label lblElija;
+        private Button btnTraslado;
+        private CheckBox chkNocturno;
+        private Button bntExcursion;
+        private Label lblTarifaExcursion;
+        private Button btnMiniBar;
+        private NumericUpDown nudPrecioUnitario;
+        private Label lblMinibar;
+        private Label label2;
+        private NumericUpDown nudCantidad;
+        private Label label1;
+        private Button btnCuentaTotal;
+        private Label lblValorPredeterminado;
     }
 }
