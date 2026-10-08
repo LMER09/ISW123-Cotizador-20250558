@@ -22,12 +22,11 @@ namespace Cotizador_2025_0558
                 return;
             }
 
-            if (!decimal.TryParse(txtTarifa.Text, out decimal tarifa) || tarifa <= 0)
+            if (!decimal.TryParse(nudTarifa.Text, out decimal tarifa) || tarifa <= 0)
             {
                 MessageBox.Show("La tarifa debe ser un número mayor que cero.", "Dato incorrecto",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtTarifa.Focus();
-                txtTarifa.SelectAll();
+                nudTarifa.Focus();
                 return;
             }
 
@@ -49,7 +48,6 @@ namespace Cotizador_2025_0558
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             txtHuesped.Clear();
-            txtTarifa.Clear();
             nudNoches.Value = 1;
             chkTemporadaAlta.Checked = false;
 
@@ -89,7 +87,7 @@ namespace Cotizador_2025_0558
         {
             string huesped = txtHuesped.Text;
             int noches = (int)nudNoches.Value;
-            decimal tarifa = Convert.ToDecimal(txtTarifa.Text);
+            decimal tarifa = Convert.ToDecimal(nudTarifa.Text);
 
             decimal subtotal = noches * tarifa;
             decimal descuento = 0m;
@@ -107,6 +105,46 @@ namespace Cotizador_2025_0558
 
         private void frmInicio_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnNivel1_Click(object sender, EventArgs e)
+        {
+            
+            int a = 10;
+            int b = 3;
+            int r1 = a / b;
+
+            decimal r2 = 10 / 4m;
+
+            int x = 5;
+            x = x + 2;
+            x = x * 3;
+
+            decimal p = 200m;
+            decimal r = p * 0.18m;
+
+            int n = 7;
+            decimal d = 0m;
+            if (n > 7)
+            {
+                d = 50m;
+            }
+
+            int n1 = 7;
+            bool larga = n1 >= 7;
+
+            string s = "Villa" + "Coral";
+
+            int n2 = 4;
+            decimal t = 100m;
+            decimal total = n2 * t * 1.28m;
+
+            decimal t1 = 120m;
+            t1 = t1 + t1 * 0.25m;
+
+            int noches = (int)8.9m;
+
 
         }
     }

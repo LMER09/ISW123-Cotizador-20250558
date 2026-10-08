@@ -30,9 +30,9 @@
         {
             label1 = new Label();
             gbCotizador = new GroupBox();
+            nudTarifa = new NumericUpDown();
             chkTemporadaAlta = new CheckBox();
             nudNoches = new NumericUpDown();
-            txtTarifa = new TextBox();
             lblTarifa = new Label();
             lblNoches = new Label();
             txtHuesped = new TextBox();
@@ -53,26 +53,26 @@
             btnCopiar = new Button();
             btnImperativo = new Button();
             lstResultados = new ListBox();
+            btnNivel1 = new Button();
             gbCotizador.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudTarifa).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoches).BeginInit();
             gbTotales.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(15, 34);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(0, 23);
-            label1.TabIndex = 0;
+            label1.Size = new Size(100, 23);
+            label1.TabIndex = 15;
             // 
             // gbCotizador
             // 
             gbCotizador.BackColor = Color.AliceBlue;
+            gbCotizador.Controls.Add(nudTarifa);
             gbCotizador.Controls.Add(chkTemporadaAlta);
             gbCotizador.Controls.Add(nudNoches);
-            gbCotizador.Controls.Add(txtTarifa);
             gbCotizador.Controls.Add(lblTarifa);
             gbCotizador.Controls.Add(lblNoches);
             gbCotizador.Controls.Add(txtHuesped);
@@ -81,17 +81,28 @@
             gbCotizador.Margin = new Padding(4, 3, 4, 3);
             gbCotizador.Name = "gbCotizador";
             gbCotizador.Padding = new Padding(4, 3, 4, 3);
-            gbCotizador.Size = new Size(439, 285);
+            gbCotizador.Size = new Size(569, 279);
             gbCotizador.TabIndex = 1;
             gbCotizador.TabStop = false;
             gbCotizador.Text = "Cotizador";
+            // 
+            // nudTarifa
+            // 
+            nudTarifa.Location = new Point(26, 186);
+            nudTarifa.Margin = new Padding(4, 3, 4, 3);
+            nudTarifa.Maximum = new decimal(new int[] { 1569325056, 23283064, 0, 0 });
+            nudTarifa.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudTarifa.Name = "nudTarifa";
+            nudTarifa.Size = new Size(188, 30);
+            nudTarifa.TabIndex = 8;
+            nudTarifa.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // chkTemporadaAlta
             // 
             chkTemporadaAlta.AutoSize = true;
             chkTemporadaAlta.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             chkTemporadaAlta.ForeColor = Color.MediumBlue;
-            chkTemporadaAlta.Location = new Point(89, 231);
+            chkTemporadaAlta.Location = new Point(26, 231);
             chkTemporadaAlta.Margin = new Padding(4, 3, 4, 3);
             chkTemporadaAlta.Name = "chkTemporadaAlta";
             chkTemporadaAlta.Size = new Size(234, 29);
@@ -109,15 +120,6 @@
             nudNoches.Size = new Size(188, 30);
             nudNoches.TabIndex = 6;
             nudNoches.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            // 
-            // txtTarifa
-            // 
-            txtTarifa.Location = new Point(26, 186);
-            txtTarifa.Margin = new Padding(4, 3, 4, 3);
-            txtTarifa.Name = "txtTarifa";
-            txtTarifa.Size = new Size(368, 30);
-            txtTarifa.TabIndex = 5;
-            txtTarifa.TextChanged += textBox1_TextChanged;
             // 
             // lblTarifa
             // 
@@ -174,7 +176,7 @@
             gbTotales.Margin = new Padding(4, 3, 4, 3);
             gbTotales.Name = "gbTotales";
             gbTotales.Padding = new Padding(4, 3, 4, 3);
-            gbTotales.Size = new Size(439, 201);
+            gbTotales.Size = new Size(569, 201);
             gbTotales.TabIndex = 8;
             gbTotales.TabStop = false;
             gbTotales.Text = "Totales";
@@ -312,7 +314,7 @@
             // 
             // btnImperativo
             // 
-            btnImperativo.Location = new Point(493, 555);
+            btnImperativo.Location = new Point(627, 555);
             btnImperativo.Name = "btnImperativo";
             btnImperativo.Size = new Size(469, 36);
             btnImperativo.TabIndex = 12;
@@ -324,17 +326,28 @@
             // 
             lstResultados.BackColor = Color.AliceBlue;
             lstResultados.FormattingEnabled = true;
-            lstResultados.Location = new Point(493, 29);
+            lstResultados.Location = new Point(627, 34);
             lstResultados.Name = "lstResultados";
             lstResultados.Size = new Size(469, 487);
             lstResultados.TabIndex = 13;
+            // 
+            // btnNivel1
+            // 
+            btnNivel1.Location = new Point(34, 632);
+            btnNivel1.Name = "btnNivel1";
+            btnNivel1.Size = new Size(124, 36);
+            btnNivel1.TabIndex = 14;
+            btnNivel1.Text = "Nivel 1";
+            btnNivel1.UseVisualStyleBackColor = true;
+            btnNivel1.Click += btnNivel1_Click;
             // 
             // frmInicio
             // 
             AutoScaleDimensions = new SizeF(10F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
-            ClientSize = new Size(1003, 619);
+            ClientSize = new Size(1136, 737);
+            Controls.Add(btnNivel1);
             Controls.Add(lstResultados);
             Controls.Add(btnImperativo);
             Controls.Add(btnCopiar);
@@ -353,11 +366,11 @@
             Load += frmInicio_Load;
             gbCotizador.ResumeLayout(false);
             gbCotizador.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudTarifa).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudNoches).EndInit();
             gbTotales.ResumeLayout(false);
             gbTotales.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -365,7 +378,6 @@
         private Label label1;
         private GroupBox gbCotizador;
         private Label lblHuesped;
-        private TextBox txtTarifa;
         private Label lblTarifa;
         private Label lblNoches;
         private TextBox txtHuesped;
@@ -387,5 +399,7 @@
         private Button btnCopiar;
         private Button btnImperativo;
         private ListBox lstResultados;
+        private NumericUpDown nudTarifa;
+        private Button btnNivel1;
     }
 }
