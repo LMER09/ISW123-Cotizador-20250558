@@ -6,12 +6,10 @@ namespace Cotizador_2025_0558
         {
             InitializeComponent();
         }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void frmInicio_Load(object sender, EventArgs e)
         {
 
         }
-
         private void btnCalcular_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtHuesped.Text))
@@ -34,7 +32,7 @@ namespace Cotizador_2025_0558
             {
                 Huesped = txtHuesped.Text.Trim(),
                 Noches = (int)nudNoches.Value,
-                TarifaPorNoche = tarifa,
+                TarifaPorNoche = nudTarifa.Value,
                 EsTemporadaAlta = chkTemporadaAlta.Checked
             };
 
@@ -49,7 +47,12 @@ namespace Cotizador_2025_0558
         {
             txtHuesped.Clear();
             nudNoches.Value = 1;
+            nudTarifa.Value = 1;
             chkTemporadaAlta.Checked = false;
+            nudPersonas.Value = 1;
+            nudTasa.Value = 0;
+            chkFinSemana.Checked = false;
+            lstResultados.Items.Clear();
 
             lblSubtotal.Text = lblDescuento.Text = lblItbis.Text =
                 lblServicio.Text = lblTotal.Text = "0.00";
@@ -103,27 +106,26 @@ namespace Cotizador_2025_0558
             lstResultados.Items.Add($"- Imperativo | {huesped} | US$ {total:N2}");
         }
 
-        private void frmInicio_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnNivel1_Click(object sender, EventArgs e)
         {
-            
+            // 1.1
             int a = 10;
             int b = 3;
             int r1 = a / b;
 
+            // 1.2
             decimal r2 = 10 / 4m;
 
+            // 1.3
             int x = 5;
             x = x + 2;
             x = x * 3;
 
+            // 1.4
             decimal p = 200m;
             decimal r = p * 0.18m;
 
+            // 1.5
             int n = 7;
             decimal d = 0m;
             if (n > 7)
@@ -131,21 +133,113 @@ namespace Cotizador_2025_0558
                 d = 50m;
             }
 
+            // 1.6
             int n1 = 7;
             bool larga = n1 >= 7;
 
+            // 1.7
             string s = "Villa" + "Coral";
 
+            // 1.8
             int n2 = 4;
             decimal t = 100m;
             decimal total = n2 * t * 1.28m;
 
+            //1.9
             decimal t1 = 120m;
             t1 = t1 + t1 * 0.25m;
 
+            // 1.10
             int noches = (int)8.9m;
 
 
         }
+
+        private void btnPesos_Click(object sender, EventArgs e)
+        {
+            var reserva = new Reserva
+            {
+                Huesped = txtHuesped.Text.Trim(),
+                Noches = (int)nudNoches.Value,
+                TarifaPorNoche = nudTarifa.Value
+            };
+
+            decimal tasa = nudTasa.Value;
+            decimal pesos = reserva.Total * tasa;
+            lstResultados.Items.Add($"Total en Pesos: RD$ {pesos:N2}");
+
+        }
+
+        private void btnPorPersona_Click(object sender, EventArgs e)
+        {
+            var reserva = new Reserva
+            {
+                Huesped = txtHuesped.Text.Trim(),
+                Noches = (int)nudNoches.Value,
+                TarifaPorNoche = nudTarifa.Value
+
+            };
+
+            decimal porPersona = reserva.Total / nudPersonas.Value;
+            lstResultados.Items.Add($"Total por Persona: US$ {porPersona:N2}");
+        }
+
+        private void btnDeposito_Click(object sender, EventArgs e)
+        {
+            var reserva = new Reserva
+            {
+                Huesped = txtHuesped.Text.Trim(),
+                Noches = (int)nudNoches.Value,
+                TarifaPorNoche = nudTarifa.Value
+
+            };
+            decimal deposito = reserva.Total * 0.30m;
+            decimal saldo = reserva.Total - deposito;
+            lstResultados.Items.Add($"Depósito 30%: US$ {deposito:N2}");
+            lstResultados.Items.Add($"Saldo pendiente: US$ {saldo:N2}");
+
+
+        }
+
+        private void btnFinSemana_Click(object sender, EventArgs e)
+        {
+            decimal tarifa = nudTarifa.Value;
+
+            if (chkFinSemana.Checked)
+            {
+                tarifa *= 1.15m;
+            }
+
+            var reserva = new Reserva
+            {
+                Huesped = txtHuesped.Text.Trim(),
+                Noches = (int)nudNoches.Value,
+                TarifaPorNoche = tarifa
+
+            };
+
+            lstResultados.Items.Add($"Tarifa con Fin de Semana: US$ {reserva.Total:N2}");
+
+        }
+
+        private void btnDesglose_Click(object sender, EventArgs e)
+        {
+            var reserva = new Reserva
+            {
+                Huesped = txtHuesped.Text.Trim(),
+                Noches = (int)nudNoches.Value,
+                TarifaPorNoche = nudTarifa.Value
+
+            };
+
+            lstResultados.Items.Add($"Subtota: US$ {reserva.Subtotal:N2}");
+            lstResultados.Items.Add($"Descuento: US$ {reserva.Descuento:N2}");
+            lstResultados.Items.Add($"Base imponible: US$ {reserva.BaseImponible:N2}");
+            lstResultados.Items.Add($"Itbis 18%: US$ {reserva.Itbis:N2}");
+            lstResultados.Items.Add($"Servicio 10%: US$ {reserva.Servicio:N2}");
+            lstResultados.Items.Add($"Total: US$ {reserva.Total:N2}");
+
+        }
+
     }
 }
