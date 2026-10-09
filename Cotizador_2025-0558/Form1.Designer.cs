@@ -61,7 +61,8 @@
             lblSub = new Label();
             lstResultados = new ListBox();
             gbOtrosServicios = new GroupBox();
-            btnViejo = new Button();
+            nudPersonasExcursion = new NumericUpDown();
+            lblCatidadPersonasExcursion = new Label();
             chkNocturno = new CheckBox();
             btnTraslado = new Button();
             chkFinSemana = new CheckBox();
@@ -71,11 +72,13 @@
             lblCantidadMini = new Label();
             nudPrecioUnitario = new NumericUpDown();
             btnMiniBar = new Button();
-            bntExcursion = new Button();
+            btnExcursion = new Button();
             nudTarifaexcursion = new NumericUpDown();
             lblTarifaExcursion = new Label();
+            btnViejo = new Button();
             btnImperativo = new Button();
             btnNivel1 = new Button();
+            btnDeposito = new Button();
             gbCotizador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudPersonas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudTasa).BeginInit();
@@ -83,6 +86,7 @@
             ((System.ComponentModel.ISupportInitialize)nudNoches).BeginInit();
             gbTotales.SuspendLayout();
             gbOtrosServicios.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudPersonasExcursion).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudCantidad).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudPrecioUnitario).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudTarifaexcursion).BeginInit();
@@ -446,14 +450,14 @@
             lstResultados.FormattingEnabled = true;
             lstResultados.Location = new Point(931, 12);
             lstResultados.Name = "lstResultados";
-            lstResultados.Size = new Size(475, 533);
+            lstResultados.Size = new Size(475, 487);
             lstResultados.TabIndex = 13;
-            lstResultados.SelectedIndexChanged += lstResultados_SelectedIndexChanged;
             // 
             // gbOtrosServicios
             // 
             gbOtrosServicios.BackColor = Color.AliceBlue;
-            gbOtrosServicios.Controls.Add(btnViejo);
+            gbOtrosServicios.Controls.Add(nudPersonasExcursion);
+            gbOtrosServicios.Controls.Add(lblCatidadPersonasExcursion);
             gbOtrosServicios.Controls.Add(chkNocturno);
             gbOtrosServicios.Controls.Add(btnTraslado);
             gbOtrosServicios.Controls.Add(chkFinSemana);
@@ -463,25 +467,37 @@
             gbOtrosServicios.Controls.Add(lblCantidadMini);
             gbOtrosServicios.Controls.Add(nudPrecioUnitario);
             gbOtrosServicios.Controls.Add(btnMiniBar);
-            gbOtrosServicios.Controls.Add(bntExcursion);
+            gbOtrosServicios.Controls.Add(btnExcursion);
             gbOtrosServicios.Controls.Add(nudTarifaexcursion);
             gbOtrosServicios.Controls.Add(lblTarifaExcursion);
-            gbOtrosServicios.Location = new Point(34, 423);
+            gbOtrosServicios.Location = new Point(34, 439);
             gbOtrosServicios.Name = "gbOtrosServicios";
             gbOtrosServicios.Size = new Size(880, 235);
             gbOtrosServicios.TabIndex = 40;
             gbOtrosServicios.TabStop = false;
             gbOtrosServicios.Text = "Otros servicios";
             // 
-            // btnViejo
+            // nudPersonasExcursion
             // 
-            btnViejo.Location = new Point(289, 170);
-            btnViejo.Name = "btnViejo";
-            btnViejo.Size = new Size(235, 36);
-            btnViejo.TabIndex = 60;
-            btnViejo.Text = "Sistema Viejo";
-            btnViejo.UseVisualStyleBackColor = true;
-            btnViejo.Click += btnViejo_Click;
+            nudPersonasExcursion.BackColor = Color.White;
+            nudPersonasExcursion.Location = new Point(289, 121);
+            nudPersonasExcursion.Margin = new Padding(4, 3, 4, 3);
+            nudPersonasExcursion.Maximum = new decimal(new int[] { 20, 0, 0, 0 });
+            nudPersonasExcursion.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudPersonasExcursion.Name = "nudPersonasExcursion";
+            nudPersonasExcursion.Size = new Size(235, 30);
+            nudPersonasExcursion.TabIndex = 62;
+            nudPersonasExcursion.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // lblCatidadPersonasExcursion
+            // 
+            lblCatidadPersonasExcursion.AutoSize = true;
+            lblCatidadPersonasExcursion.Location = new Point(288, 95);
+            lblCatidadPersonasExcursion.Margin = new Padding(4, 0, 4, 0);
+            lblCatidadPersonasExcursion.Name = "lblCatidadPersonasExcursion";
+            lblCatidadPersonasExcursion.Size = new Size(188, 23);
+            lblCatidadPersonasExcursion.TabIndex = 61;
+            lblCatidadPersonasExcursion.Text = "Cantidad de personas:";
             // 
             // chkNocturno
             // 
@@ -559,7 +575,6 @@
             lblCantidadMini.Size = new Size(157, 23);
             lblCantidadMini.TabIndex = 48;
             lblCantidadMini.Text = "Cantidad minibar:";
-            lblCantidadMini.Click += label2_Click;
             // 
             // nudPrecioUnitario
             // 
@@ -583,20 +598,20 @@
             btnMiniBar.UseVisualStyleBackColor = true;
             btnMiniBar.Click += btnMiniBar_Click;
             // 
-            // bntExcursion
+            // btnExcursion
             // 
-            bntExcursion.Location = new Point(289, 121);
-            bntExcursion.Name = "bntExcursion";
-            bntExcursion.Size = new Size(235, 36);
-            bntExcursion.TabIndex = 42;
-            bntExcursion.Text = "Excursión Isla Saona";
-            bntExcursion.UseVisualStyleBackColor = true;
-            bntExcursion.Click += bntExcursion_Click;
+            btnExcursion.Location = new Point(289, 170);
+            btnExcursion.Name = "btnExcursion";
+            btnExcursion.Size = new Size(235, 36);
+            btnExcursion.TabIndex = 42;
+            btnExcursion.Text = "Excursión Isla Saona";
+            btnExcursion.UseVisualStyleBackColor = true;
+            btnExcursion.Click += bntExcursion_Click;
             // 
             // nudTarifaexcursion
             // 
             nudTarifaexcursion.DecimalPlaces = 2;
-            nudTarifaexcursion.Location = new Point(289, 80);
+            nudTarifaexcursion.Location = new Point(289, 62);
             nudTarifaexcursion.Margin = new Padding(4, 3, 4, 3);
             nudTarifaexcursion.Maximum = new decimal(new int[] { 1569325056, 23283064, 0, 0 });
             nudTarifaexcursion.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
@@ -608,17 +623,27 @@
             // lblTarifaExcursion
             // 
             lblTarifaExcursion.AutoSize = true;
-            lblTarifaExcursion.Location = new Point(289, 42);
+            lblTarifaExcursion.Location = new Point(289, 36);
             lblTarifaExcursion.Margin = new Padding(4, 0, 4, 0);
             lblTarifaExcursion.Name = "lblTarifaExcursion";
             lblTarifaExcursion.Size = new Size(206, 23);
             lblTarifaExcursion.TabIndex = 40;
             lblTarifaExcursion.Text = "Tarifa de Excursión USD:";
             // 
+            // btnViejo
+            // 
+            btnViejo.Location = new Point(931, 638);
+            btnViejo.Name = "btnViejo";
+            btnViejo.Size = new Size(475, 36);
+            btnViejo.TabIndex = 60;
+            btnViejo.Text = "Sistema Viejo";
+            btnViejo.UseVisualStyleBackColor = true;
+            btnViejo.Click += btnViejo_Click;
+            // 
             // btnImperativo
             // 
             btnImperativo.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnImperativo.Location = new Point(931, 574);
+            btnImperativo.Location = new Point(931, 505);
             btnImperativo.Name = "btnImperativo";
             btnImperativo.Size = new Size(475, 39);
             btnImperativo.TabIndex = 62;
@@ -628,7 +653,7 @@
             // 
             // btnNivel1
             // 
-            btnNivel1.Location = new Point(931, 619);
+            btnNivel1.Location = new Point(931, 593);
             btnNivel1.Name = "btnNivel1";
             btnNivel1.Size = new Size(475, 39);
             btnNivel1.TabIndex = 66;
@@ -636,14 +661,27 @@
             btnNivel1.UseVisualStyleBackColor = true;
             btnNivel1.Click += btnNivel1_Click;
             // 
+            // btnDeposito
+            // 
+            btnDeposito.Location = new Point(931, 551);
+            btnDeposito.Name = "btnDeposito";
+            btnDeposito.Size = new Size(475, 36);
+            btnDeposito.TabIndex = 67;
+            btnDeposito.Text = "Deposito / Saldo pendiente";
+            btnDeposito.UseVisualStyleBackColor = true;
+            btnDeposito.UseWaitCursor = true;
+            btnDeposito.Click += btnDeposito_Click;
+            // 
             // frmInicio
             // 
             AutoScaleDimensions = new SizeF(10F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.GhostWhite;
-            ClientSize = new Size(1423, 670);
+            BackColor = Color.MintCream;
+            ClientSize = new Size(1423, 702);
+            Controls.Add(btnDeposito);
             Controls.Add(btnNivel1);
             Controls.Add(btnImperativo);
+            Controls.Add(btnViejo);
             Controls.Add(gbOtrosServicios);
             Controls.Add(lstResultados);
             Controls.Add(gbTotales);
@@ -667,6 +705,7 @@
             gbTotales.PerformLayout();
             gbOtrosServicios.ResumeLayout(false);
             gbOtrosServicios.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudPersonasExcursion).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudCantidad).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudPrecioUnitario).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudTarifaexcursion).EndInit();
@@ -706,7 +745,7 @@
         private Label lblCantidadMini;
         private NumericUpDown nudPrecioUnitario;
         private Button btnMiniBar;
-        private Button bntExcursion;
+        private Button btnExcursion;
         private NumericUpDown nudTarifaexcursion;
         private Label lblTarifaExcursion;
         private Button btnLimpiar;
@@ -723,5 +762,8 @@
         private Button btnCuentaTotal;
         private Button btnImperativo;
         private Button btnNivel1;
+        private NumericUpDown nudPersonasExcursion;
+        private Label lblCatidadPersonasExcursion;
+        private Button btnDeposito;
     }
 }

@@ -56,6 +56,7 @@ namespace Cotizador_2025_0558
             nudTarifaexcursion.Value = 1;
             nudCantidad.Value = 1;
             nudPrecioUnitario.Value = 1;
+            nudPersonasExcursion.Value = 1;
             lstResultados.Items.Clear();
 
             lblSubtotal.Text = lblDescuento.Text = lblItbis.Text =
@@ -275,7 +276,7 @@ namespace Cotizador_2025_0558
         {
             var excursion = new Excursion
             {
-                Personas = (int)nudPersonas.Value,
+                Personas = (int)nudPersonasExcursion.Value,
                 PrecioPorPersona = nudTarifaexcursion.Value
             };
 
@@ -314,7 +315,7 @@ namespace Cotizador_2025_0558
             };
             var excursion = new Excursion
             {
-                Personas = (int)nudPersonas.Value,
+                Personas = (int)nudPersonasExcursion.Value,
                 PrecioPorPersona = nudTarifaexcursion.Value
             };
             var minibar = new ConsumoMinibar
@@ -363,7 +364,7 @@ namespace Cotizador_2025_0558
 
             var excursion = new Excursion
             {
-                Personas = (int)nudPersonas.Value,
+                Personas = (int)nudPersonasExcursion.Value,
                 PrecioPorPersona = nudTarifaexcursion.Value
             };
 
@@ -388,16 +389,6 @@ namespace Cotizador_2025_0558
             lstResultados.Items.Add($"Total general: US$ {totalGeneral:N2}");
             lstResultados.Items.Add($"total general: RD$ {totalPesos:N2}");
             lstResultados.Items.Add($"Deposito 30%: US$ {deposito:N2}");
-        }
-
-        private void lstResultados_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
