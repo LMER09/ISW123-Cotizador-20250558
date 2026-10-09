@@ -52,6 +52,10 @@ namespace Cotizador_2025_0558
             nudPersonas.Value = 1;
             nudTasa.Value = 0;
             chkFinSemana.Checked = false;
+            chkNocturno.Checked = false;
+            nudTarifaexcursion.Value = 1;
+            nudCantidad.Value = 1;
+            nudPrecioUnitario.Value = 1;
             lstResultados.Items.Clear();
 
             lblSubtotal.Text = lblDescuento.Text = lblItbis.Text =
@@ -152,6 +156,23 @@ namespace Cotizador_2025_0558
             // 1.10
             int noches = (int)8.9m;
 
+            var texto = $"""
+        Nivel 1
+
+        1.1: {r1}
+        1.2: {r2:N2}
+        1.3: {x}
+        1.4: {r:N2}
+        1.5: {d:N2}
+        1.6: {larga}
+        1.7: {s}
+        1.8: {total:N2}
+        1.9: {t1:N2}
+        1.10: {noches}
+        """;
+
+            MessageBox.Show(texto, "Nivel 1",
+        MessageBoxButtons.OK, MessageBoxIcon.Information); ;
 
         }
 
@@ -177,11 +198,10 @@ namespace Cotizador_2025_0558
                 Huesped = txtHuesped.Text.Trim(),
                 Noches = (int)nudNoches.Value,
                 TarifaPorNoche = nudTarifa.Value
-
             };
 
             decimal porPersona = reserva.Total / nudPersonas.Value;
-            lstResultados.Items.Add($"Total por Persona: US$ {porPersona:N2}");
+            lstResultados.Items.Add($"Cada persona paga: US$ {porPersona:N2}");
         }
 
         private void btnDeposito_Click(object sender, EventArgs e)
@@ -193,12 +213,11 @@ namespace Cotizador_2025_0558
                 TarifaPorNoche = nudTarifa.Value
 
             };
+
             decimal deposito = reserva.Total * 0.30m;
             decimal saldo = reserva.Total - deposito;
             lstResultados.Items.Add($"Depósito 30%: US$ {deposito:N2}");
             lstResultados.Items.Add($"Saldo pendiente: US$ {saldo:N2}");
-
-
         }
 
         private void btnFinSemana_Click(object sender, EventArgs e)
@@ -218,7 +237,7 @@ namespace Cotizador_2025_0558
 
             };
 
-            lstResultados.Items.Add($"Tarifa con Fin de Semana: US$ {reserva.Total:N2}");
+            lstResultados.Items.Add($"Total con fin de semana: US$ {reserva.Total:N2}");
 
         }
 
@@ -249,25 +268,23 @@ namespace Cotizador_2025_0558
                 Nocturno = chkNocturno.Checked
             };
 
-            lstResultados.Items.Add($"Traslado Aeropuerto: US$ {traslado.Total:N2}");
+            lstResultados.Items.Add($"total de traslado incluido: US$ {traslado.Total:N2}");
         }
 
         private void bntExcursion_Click(object sender, EventArgs e)
         {
             var excursion = new Excursion
             {
-                Personas = 6,
-                PrecioPorPersona = 85m
+                Personas = (int)nudPersonas.Value,
+                PrecioPorPersona = nudTarifaexcursion.Value
             };
 
             if (excursion.Personas >= 4)
             {
-                lstResultados.Items.Add($"Excursión Isla Saona: US$ {excursion.Subtotal:N2}");
+                lstResultados.Items.Add($"Excursion Isla Saona: US$ {excursion.Subtotal:N2}");
                 lstResultados.Items.Add($"Descuento 10%: -US$ {excursion.Descuento:N2}");
             }
-
-            lstResultados.Items.Add($"Excursión Isla Saona: US$ {excursion.Total:N2}");
-
+            lstResultados.Items.Add($"Excursion Isla Saona: US$ {excursion.Total:N2}");
         }
 
         private void btnMiniBar_Click(object sender, EventArgs e)
@@ -279,7 +296,6 @@ namespace Cotizador_2025_0558
             };
 
             lstResultados.Items.Add($"MiniBar: US$ {minibar.Total:N2}");
-
         }
 
         private void btnCuentaTotal_Click(object sender, EventArgs e)
@@ -298,8 +314,8 @@ namespace Cotizador_2025_0558
             };
             var excursion = new Excursion
             {
-                Personas = 6, // valores predetermoindo
-                PrecioPorPersona = 85m
+                Personas = (int)nudPersonas.Value,
+                PrecioPorPersona = nudTarifaexcursion.Value
             };
             var minibar = new ConsumoMinibar
             {
@@ -307,10 +323,11 @@ namespace Cotizador_2025_0558
                 PrecioUnitario = nudPrecioUnitario.Value
             };
 
-            decimal cuenta = reserva.Total + traslado.Total + excursion.Total + minibar.Total;
+            decimal cuenta = reserva.Total + traslado.Total
+                + excursion.Total + minibar.Total;
             lstResultados.Items.Add($"Reserva: US$ {reserva.Total:N2}");
             lstResultados.Items.Add($"Traslado al Aeropuerto: US$ {traslado.Total:N2}");
-            lstResultados.Items.Add($"Excursión Isla Saona: US$ {excursion.Total:N2}");
+            lstResultados.Items.Add($"Excursion Isla Saona: US$ {excursion.Total:N2}");
             lstResultados.Items.Add($"Consumo en el MiniBar: US$ {minibar.Total:N2}");
             lstResultados.Items.Add($"Cuenta Total: US$ {cuenta:N2}");
 
@@ -318,11 +335,68 @@ namespace Cotizador_2025_0558
 
         private void btnViejo_Click(object sender, EventArgs e)
         {
-            lstResultados.Items.Add($"Depósito de 1000: {SistemaViejo.CalcularDeposito(1000m):N2} (debe dar 300.00)");
+            lstResultados.Items.Add($"Deposito de 1000: {SistemaViejo.CalcularDeposito(1000m):N2} (debe dar 300.00)");
             lstResultados.Items.Add($"100 USD a tasa 60: {SistemaViejo.APesos(100m, 60m):N2} (debe dar 6,000.00)");
             lstResultados.Items.Add($"Tarifa 200 fin de semana: {SistemaViejo.TarifaFinDeSemana(200m, true):N2} (debe dar 230.00)");
-            lstResultados.Items.Add($"Excursión 4 × 50: {SistemaViejo.TotalExcursion(4, 50m):N2} (debe dar 180.00)");
+            lstResultados.Items.Add($"Excursion 4 × 50: {SistemaViejo.TotalExcursion(4, 50m):N2} (debe dar 180.00)");
             lstResultados.Items.Add($"Minibar 3 × 4: {SistemaViejo.TotalMinibar(3, 4m):N2} (debe dar 14.16)");
+        }
+
+        private void btnFactura_Click(object sender, EventArgs e)
+        {
+            decimal tasa = nudTasa.Value;
+            decimal tarifa = SistemaViejo.TarifaFinDeSemana(nudTarifa.Value, chkFinSemana.Checked);
+
+            var reserva = new Reserva
+            {
+                Huesped = txtHuesped.Text.Trim(),
+                Noches = (int)nudNoches.Value,
+                TarifaPorNoche = tarifa,
+                EsTemporadaAlta = chkTemporadaAlta.Checked
+            };
+
+            var traslado = new TrasladoAeropuerto
+            {
+                Pasajeros = (int)nudPersonas.Value,
+                Nocturno = chkNocturno.Checked
+            };
+
+            var excursion = new Excursion
+            {
+                Personas = (int)nudPersonas.Value,
+                PrecioPorPersona = nudTarifaexcursion.Value
+            };
+
+            var minibar = new ConsumoMinibar
+            {
+                Cantidad = (int)nudCantidad.Value,
+                PrecioUnitario = nudPrecioUnitario.Value
+            };
+
+            decimal totalGeneral = reserva.Total + traslado.Total
+                + excursion.Total + minibar.Total;
+
+            decimal totalPesos = SistemaViejo.APesos(totalGeneral, tasa);
+            decimal deposito = SistemaViejo.CalcularDeposito(totalGeneral);
+
+            lstResultados.Items.Add("--- FACTURA DE LA ESTADIA ---");
+            lstResultados.Items.Add($"Huésped: {reserva.Huesped}");
+            lstResultados.Items.Add($"Reserva: US$ {reserva.Total:N2}");
+            lstResultados.Items.Add($"Traslado: US$ {traslado.Total:N2}");
+            lstResultados.Items.Add($"Excursion: US$ {excursion.Total:N2}");
+            lstResultados.Items.Add($"Minibar: US$ {minibar.Total:N2}");
+            lstResultados.Items.Add($"Total general: US$ {totalGeneral:N2}");
+            lstResultados.Items.Add($"total general: RD$ {totalPesos:N2}");
+            lstResultados.Items.Add($"Deposito 30%: US$ {deposito:N2}");
+        }
+
+        private void lstResultados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
 
         }
     }
